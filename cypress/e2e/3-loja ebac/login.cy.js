@@ -42,7 +42,7 @@ const perfil = require('../../fixtures/perfil.json')
         
     });
 
-    it.only('Deve fazer login com sucesso - usando Fixture', () => {
+    it('Deve fazer login com sucesso - usando Fixture', () => {
         cy.fixture('perfil').then(dados =>{
             cy.get('#username').type(dados.usuario, {log:false})
             cy.get('#password').type(dados.senha, { log: false})
@@ -50,6 +50,11 @@ const perfil = require('../../fixtures/perfil.json')
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, ebacteste (não é ebacteste? Sair)')   
         })
         
+    });
+
+    it.only('Deve fazer o login com sucesso - usando Comandos de customizados', () => {
+        cy.login('ebacteste@teste.com','1234')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain' , 'Olá, ebacteste (não é ebacteste? Sair)')
     });
 
     
